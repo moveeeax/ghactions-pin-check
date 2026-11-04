@@ -8,6 +8,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime/debug"
 
 	"github.com/moveeeax/ghactions-pin-check/internal/lint"
 	"github.com/moveeeax/ghactions-pin-check/internal/pin"
@@ -16,6 +17,18 @@ import (
 
 // version is overridable at build time via -ldflags "-X main.version=...".
 var version = "dev"
+
+// resolvedVersion returns the ldflags version when set, otherwise the module
+// version recorded by `go install ...@vX.Y.Z`, falling back to "dev".
+func resolvedVersion() string {
+	if version != "dev" {
+		return version
+	}
+	if bi, ok := debug.ReadBuildInfo(); ok && bi.Main.Version != "" && bi.Main.Version != "(devel)" {
+		return bi.Main.Version
+	}
+	return version
+}
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
@@ -39,7 +52,7 @@ func run(args []string, stdout, stderr *os.File) int {
 		return 2
 	}
 	if *showVer {
-		fmt.Fprintln(stdout, version)
+		fmt.Fprintln(stdout, resolvedVersion())
 		return 0
 	}
 
