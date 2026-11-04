@@ -80,10 +80,10 @@ jobs:
   pin-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@a81bbbf8298c0fa03ea29cdc473d45769f953675 # v4.1.7
-      - uses: actions/setup-go@0aaccfd150d50ccaeb58ebd88d36e91967a5f35b # v5.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
-          go-version: '1.22'
+          go-version: '1.27'
       - run: go run github.com/moveeeax/ghactions-pin-check/cmd/ghactions-pin-check@latest
 ```
 
@@ -104,4 +104,4 @@ make build
 
 ## License
 
-MIT
+MIT, see [LICENSE](LICENSE).
