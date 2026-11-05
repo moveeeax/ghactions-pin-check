@@ -105,3 +105,7 @@ make build
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+---
+
+**Archived on 2026-11-05.** zizmor (`unpinned-uses`, plus impostor-commit checks), pinact and ratchet already detect and fix unpinned references, ghalint enforces SHA pinning, and GitHub can enforce SHA pinning as an org/repo policy; a check-only line scanner has no clear angle. If kept, the only differentiated work is the items below, and they mostly re-implement pinact.
